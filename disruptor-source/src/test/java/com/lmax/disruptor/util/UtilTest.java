@@ -25,43 +25,37 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
-public final class UtilTest
-{
-    @Test
-    public void shouldReturnNextPowerOfTwo()
-    {
-        int powerOfTwo = Util.ceilingNextPowerOfTwo(1000);
+public final class UtilTest {
+  @Test
+  public void shouldGetByteBufferAddress() throws Exception {
+    ByteBuffer buffer = ByteBuffer.allocateDirect(16);
+    assertThat(Util.getAddressFromDirectByteBuffer(buffer), is(not(0L)));
+  }
 
-        Assert.assertEquals(1024, powerOfTwo);
-    }
+  @Test
+  public void shouldReturnExactPowerOfTwo() {
+    int powerOfTwo = Util.ceilingNextPowerOfTwo(1024);
 
-    @Test
-    public void shouldReturnExactPowerOfTwo()
-    {
-        int powerOfTwo = Util.ceilingNextPowerOfTwo(1024);
+    Assert.assertEquals(1024, powerOfTwo);
+  }
 
-        Assert.assertEquals(1024, powerOfTwo);
-    }
+  @Test
+  public void shouldReturnLongMaxWhenNoEventProcessors() {
+    final Sequence[] sequences = new Sequence[0];
 
-    @Test
-    public void shouldReturnMinimumSequence()
-    {
-        final Sequence[] sequences = {new Sequence(7L), new Sequence(3L), new Sequence(12L)};
-        Assert.assertEquals(3L, Util.getMinimumSequence(sequences));
-    }
+    Assert.assertEquals(Long.MAX_VALUE, Util.getMinimumSequence(sequences));
+  }
 
-    @Test
-    public void shouldReturnLongMaxWhenNoEventProcessors()
-    {
-        final Sequence[] sequences = new Sequence[0];
+  @Test
+  public void shouldReturnMinimumSequence() {
+    final Sequence[] sequences = {new Sequence(7L), new Sequence(3L), new Sequence(12L)};
+    Assert.assertEquals(3L, Util.getMinimumSequence(sequences));
+  }
 
-        Assert.assertEquals(Long.MAX_VALUE, Util.getMinimumSequence(sequences));
-    }
+  @Test
+  public void shouldReturnNextPowerOfTwo() {
+    int powerOfTwo = Util.ceilingNextPowerOfTwo(1000);
 
-    @Test
-    public void shouldGetByteBufferAddress() throws Exception
-    {
-        ByteBuffer buffer = ByteBuffer.allocateDirect(16);
-        assertThat(Util.getAddressFromDirectByteBuffer(buffer), is(not(0L)));
-    }
+    Assert.assertEquals(1024, powerOfTwo);
+  }
 }
