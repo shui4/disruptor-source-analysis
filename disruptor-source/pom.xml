@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lmax</groupId>
-    <artifactId>disruptor</artifactId>
+    <artifactId>disruptor-source</artifactId>
     <version>3.3.10</version>
     <name>Disruptor Framework</name>
     <description>Disruptor - Concurrent Programming Framework</description>
